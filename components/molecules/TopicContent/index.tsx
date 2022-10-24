@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material'
-import ImageButton from '../ImageButton'
-import { Title, Wrapper } from './stylle'
+import ImageButton from '../../atoms/ImageButton'
+import { ButtonsWrapper, Title, Wrapper } from './stylle'
 
 interface TopicContentInterface {
   topics: TopicObject[]
@@ -18,12 +18,14 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
         <>
           <Title key={topic.title}>{topic.title}</Title>
           <Divider />
-          {topic.content.map((content) => (
-            <ImageButton
-              key={content}
-              image={{ title: content, url: content }}
-            />
-          ))}
+          <ButtonsWrapper>
+            {topic.content.map((content) => (
+              <ImageButton
+                key={content}
+                image={{ title: content, url: content }}
+              />
+            ))}
+          </ButtonsWrapper>
         </>
       ))}
     </Wrapper>

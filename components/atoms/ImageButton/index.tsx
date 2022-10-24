@@ -1,4 +1,4 @@
-import { ImageBackdrop, ImageButton, ImageSrc } from './stylle'
+import { ImageButton } from './stylle'
 
 interface ImageButtonInterface {
   image: image
@@ -11,10 +11,11 @@ interface image {
 
 const ImageButtonComponent: React.FC<ImageButtonInterface> = ({ image }) => {
   return (
-    <ImageButton focusRipple key={image.title}>
-      <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-      <ImageBackdrop className="MuiImageBackdrop-root" />
-    </ImageButton>
+    <ImageButton
+      focusRipple
+      key={image.title}
+      style={{ backgroundImage: `url(${image.url})` }}
+    />
   )
 }
 
