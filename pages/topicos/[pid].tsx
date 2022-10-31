@@ -2,8 +2,13 @@ import type { GetServerSideProps, NextPage } from 'next'
 import TopicPanel from '../../components/atoms/TopicPanel/'
 import TopicContent from '../../components/molecules/TopicContent'
 
+interface TopicObject {
+  title: string
+  content: string[]
+}
 interface TopicsInterface {
-  page: string
+  title: string
+  placeHolder: TopicObject[]
 }
 
 const pages = ['fisica', 'matematica', 'computacao']
@@ -41,6 +46,7 @@ const mathPlaceHolder = [
     ],
   },
 ]
+
 const compPlaceHolder = [
   {
     title: 'Ordenação',
@@ -69,9 +75,7 @@ const getPlaceHolder = (page: string) => {
   }
 }
 
-const Topics: NextPage<TopicsInterface> = ({ page }) => {
-  const { title, placeHolder } = getPlaceHolder(page)
-
+const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
   return (
     <>
       <TopicPanel title={title} image={''} />
@@ -83,10 +87,12 @@ const Topics: NextPage<TopicsInterface> = ({ page }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const page = (params?.pid as string) || ''
   if (!pages.includes(page)) return { notFound: true }
+  const { title, placeHolder } = getPlaceHolder(page)
 
   return {
     props: {
-      page,
+      title,
+      placeHolder,
     },
   }
 }
