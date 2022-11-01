@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import TopicPanel from '../../components/atoms/TopicPanel/'
 import TopicContent from '../../components/molecules/TopicContent'
+import Header from '../../components/molecules/Header/'
 
 interface TopicObject {
   title: string
@@ -78,6 +79,7 @@ const getPlaceHolder = (page: string) => {
 const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
   return (
     <>
+      <Header/>
       <TopicPanel title={title} image={''} />
       <TopicContent topics={placeHolder} />
     </>
