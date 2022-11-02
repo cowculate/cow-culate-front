@@ -5,23 +5,20 @@ import Header from '../components/molecules/Header/index'
 
 const Home: NextPage = () => {
   return (
-   <>
-   
-   <Header/>
-
-  <div
+  <>
+    <Header/>
+    <div
     style={{
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
       backgroundColor: '#404040',
     }}
-  >
+    >
     <HomeContent />
     <CowCulateIcon />
-  </div>
-   
-   </>
+    </div>
+  </>
   )
 }
 
