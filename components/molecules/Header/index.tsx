@@ -12,15 +12,15 @@ import Logo from "../../../public/images/new_user_pic.png"
 const Header = () => {
     const links: Array<HeaderNavLink> = [
         {
-            href: "/fisica",
+            href: "/topicos/fisica",
             value: "física"
         },
         {
-            href: "/matematica",
+            href: "/topicos/matematica",
             value: "matematica"
         },
         {
-            href: "/computacao",
+            href: "/topicos/computacao",
             value: "computação"
         },
     ]
