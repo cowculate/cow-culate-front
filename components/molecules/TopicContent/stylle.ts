@@ -7,7 +7,6 @@ export const Wrapper = styled('div')({
   backgroundColor: '#000000',
   width: '100%',
   padding: '3rem',
-  minHeight: '50vh',
 })
 
 export const Title = styled('div')({
