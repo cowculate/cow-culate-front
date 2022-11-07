@@ -17,6 +17,18 @@ export const Title = styled('div')({
   letterSpacing: '0em',
   color: '#FFFFFF',
   textAlign: 'left',
+  '@media (max-width: 1400px)': {
+    fontSize: '4rem',
+  },
+  '@media (max-width: 950px)': {
+    fontSize: '3rem',
+  },
+  '@media (max-width: 720px)': {
+    fontSize: '2rem',
+  },
+  '@media (max-width: 500px)': {
+    fontSize: '1.2rem',
+  },
 })
 
 export const TitleHighlight = styled(Title)({
