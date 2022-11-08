@@ -1,17 +1,24 @@
 import { Divider } from '@mui/material'
+import router from 'next/router'
 import ImageButton from '../../atoms/ImageButton'
 import { ButtonsWrapper, Title, Wrapper } from './stylle'
-
+interface ContentObject {
+  title: string
+  image: string
+}
 interface TopicContentInterface {
   topics: TopicObject[]
 }
 
 interface TopicObject {
   title: string
-  content: string[]
+  content: ContentObject[]
 }
 
 const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
+  const handleClick = (content: string) => {
+    router.push(`/conteudo/${content}`)
+  }
   return (
     <Wrapper>
       {topics.map((topic) => (
@@ -21,8 +28,9 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
           <ButtonsWrapper>
             {topic.content.map((content) => (
               <ImageButton
-                key={content}
-                image={{ title: content, url: content }}
+                key={content.title}
+                image={{ title: content.title, url: content.image }}
+                onClick={() => handleClick(content.title)}
               />
             ))}
           </ButtonsWrapper>
