@@ -50,7 +50,7 @@ const getFirebaseProps = async (page: string) => {
   let _subtopicos: string[] = []
 
   await db.collection('thumbnail_images').doc(page).get()
-  .then((coll) => {
+  .then((coll: any) => {
     _subtopicos = (coll.data().subtopicos)
   })
 
@@ -68,16 +68,16 @@ const getFirebaseProps = async (page: string) => {
       break
   }
 
-  return { title: pageTitle, placeHolder: response }
+  return { title: pageTitle, content: response }
 }
 
 
-const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
+const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
   return (
     <PageContainer>
       <Header />
       <TopicPanel title={title} image={''} />
-      <TopicContent topics={placeHolder} />
+      <TopicContent topics={content} />
     </PageContainer>
   )
 }
@@ -85,12 +85,12 @@ const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const page = (params?.pid as string) || ''
   if (!pages.includes(page)) return { notFound: true }
-  const { title, placeHolder } = await getFirebaseProps(page)
+  const { title, content } = await getFirebaseProps(page)
 
   return {
     props: {
       title,
-      placeHolder,
+      content,
     },
   }
 }
