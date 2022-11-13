@@ -3,6 +3,7 @@ import PageContainer from '../../components/atoms/PageContainer'
 import TopicPanel from '../../components/atoms/TopicPanel/'
 import Header from '../../components/molecules/Header'
 import TopicContent from '../../components/molecules/TopicContent'
+
 import { db } from '../../public/firebase'
 
 interface ContentObject {
@@ -50,8 +51,8 @@ const getFirebaseProps = async (page: string) => {
   let _subtopicos: string[] = []
 
   await db.collection('thumbnail_images').doc(page).get()
-  .then((coll: any) => {
-    _subtopicos = (coll.data().subtopicos)
+  .then((coll) => {
+    _subtopicos = (coll.data()!.subtopicos)
   })
 
   const response: TopicObject[] = await generateTopicObject(page, _subtopicos)
