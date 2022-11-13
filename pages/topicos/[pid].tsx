@@ -3,6 +3,7 @@ import PageContainer from '../../components/atoms/PageContainer'
 import TopicPanel from '../../components/atoms/TopicPanel/'
 import Header from '../../components/molecules/Header'
 import TopicContent from '../../components/molecules/TopicContent'
+import { db } from '../../public/firebase'
 
 interface ContentObject {
   title: string
@@ -14,121 +15,62 @@ interface TopicObject {
 }
 interface TopicsInterface {
   title: string
-  placeHolder: TopicObject[]
+  content: TopicObject[]
 }
 
 const pages = ['fisica', 'matematica', 'computacao']
 
-const fiscsPlaceHolder = [
-  {
-    title: 'Primeira Lei',
-    content: [
-      {
-        title: 'inercia',
-        image: '/images/inercia.png',
-      },
-    ],
-  },
-  {
-    title: 'Ondulatória',
-    content: [
-      {
-        title: 'Ondulatória',
-        image:
-          'https://redu.com.br/wp-content/uploads/2019/03/Movimento-ondulat%C3%B3rio.jpg',
-      },
-      {
-        title: 'Ondulatória',
-        image:
-          'http://pm1.narvii.com/6868/853d02f15aa9ca29125c35a8ad626d05c2378332r1-443-332v2_hq.jpg',
-      },
-    ],
-  },
-  {
-    title: 'Termodinâmica',
-    content: [
-      {
-        title: 'Termodinâmica',
-        image:
-          'https://static.todamateria.com.br/upload/57/6c/576c7e2b5f79c-termodinamica.jpg?auto_optimize=low',
-      },
-      {
-        title: 'Termodinâmica',
-        image:
-          'https://blogdoenem.com.br/wp-content/uploads//sites/2/2014/07/lei-termodinamica-fisica.png',
-      },
-    ],
-  },
-]
+const getThumbnailImages = async (page: string, subtopico: string) => {
 
-const mathPlaceHolder = [
-  {
-    title: 'Cálculo',
-    content: [
-      {
-        title: 'Cálculo',
-        image:
-          'https://ead.ucs.br/hubfs/Imported_Blog_Media/calculo-diferencial-e-integral.jpg',
-      },
-      {
-        title: 'Cálculo',
-        image:
-          'https://meutudo.com.br/blog/wp-content/uploads/2020/05/pasted-image-0-7-2.png',
-      },
-    ],
-  },
-  {
-    title: 'Conjuntos',
-    content: [
-      {
-        title: 'Conjuntos',
-        image:
-          'https://matematicabasica.net/wp-content/uploads/2019/02/conjuntos-numericos-1.png',
-      },
-    ],
-  },
-]
-
-const compPlaceHolder = [
-  {
-    title: 'Ordenação',
-    content: [
-      {
-        title: 'Ordenação',
-        image: 'https://www.productplan.com/uploads/bubble-sort-1024x683-2.png',
-      },
-    ],
-  },
-  {
-    title: 'Grafos',
-    content: [
-      {
-        title: 'Grafos',
-        image:
-          'https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/figs/Sedgewick-Wayne/TinyNetworkOnly.png',
-      },
-      {
-        title: 'Grafos',
-        image:
-          'https://cdn.universoracionalista.org/wp-content/uploads/2016/03/social-network.jpg',
-      },
-    ],
-  },
-]
-
-const getPlaceHolder = (page: string) => {
-  switch (page) {
-    case 'fisica':
-      return { title: 'Física', placeHolder: fiscsPlaceHolder }
-    case 'matematica':
-      return { title: 'Matemática', placeHolder: mathPlaceHolder }
-    case 'computacao':
-      return { title: 'Computação', placeHolder: compPlaceHolder }
-
-    default:
-      return { title: 'Física', placeHolder: fiscsPlaceHolder }
-  }
+  const thumbsImages: ContentObject[] = []
+    
+  await db.collection('thumbnail_images').doc(page).collection(subtopico).get()
+  .then((snapshot) => {
+    snapshot.docs.forEach((document) => {
+      thumbsImages.push({title: document.data().nome, image: document.data().url})
+    })
+  })
+  
+  return thumbsImages
 }
+
+const generateTopicObject = async (page: string, subtopicos: string[]) => {
+  const resp: TopicObject[] = []
+  
+  for(const subtopico of subtopicos) {
+    let imageList: ContentObject[] = await getThumbnailImages(page, subtopico)
+    let title: string = subtopico.charAt(0).toUpperCase() + subtopico.slice(1);
+    resp.push({title: title, content: imageList})
+  }
+
+  return resp
+}
+
+const getFirebaseProps = async (page: string) => {
+  let _subtopicos: string[] = []
+
+  await db.collection('thumbnail_images').doc(page).get()
+  .then((coll) => {
+    _subtopicos = (coll.data().subtopicos)
+  })
+
+  const response: TopicObject[] = await generateTopicObject(page, _subtopicos)
+  let pageTitle: string = ""
+  switch (page){
+    case 'fisica':
+      pageTitle = 'Física'
+      break
+    case 'matematica':
+      pageTitle = 'Matemática'
+      break
+    case 'computacao':
+      pageTitle = 'Computação'
+      break
+  }
+
+  return { title: pageTitle, placeHolder: response }
+}
+
 
 const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
   return (
@@ -143,7 +85,7 @@ const Topics: NextPage<TopicsInterface> = ({ title, placeHolder }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const page = (params?.pid as string) || ''
   if (!pages.includes(page)) return { notFound: true }
-  const { title, placeHolder } = getPlaceHolder(page)
+  const { title, placeHolder } = await getFirebaseProps(page)
 
   return {
     props: {
