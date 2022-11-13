@@ -38,8 +38,8 @@ const generateTopicObject = async (page: string, subtopicos: string[]) => {
   const resp: TopicObject[] = []
   
   for(const subtopico of subtopicos) {
-    let imageList: ContentObject[] = await getThumbnailImages(page, subtopico)
-    let title: string = subtopico.charAt(0).toUpperCase() + subtopico.slice(1);
+    const imageList: ContentObject[] = await getThumbnailImages(page, subtopico)
+    const title: string = subtopico.charAt(0).toUpperCase() + subtopico.slice(1);
     resp.push({title: title, content: imageList})
   }
 
@@ -55,7 +55,7 @@ const getFirebaseProps = async (page: string) => {
   })
 
   const response: TopicObject[] = await generateTopicObject(page, _subtopicos)
-  let pageTitle: string = ""
+  let pageTitle = ""
   switch (page){
     case 'fisica':
       pageTitle = 'Física'
