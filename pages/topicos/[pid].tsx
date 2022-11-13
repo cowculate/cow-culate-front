@@ -52,7 +52,7 @@ const getFirebaseProps = async (page: string) => {
 
   await db.collection('thumbnail_images').doc(page).get()
   .then((coll) => {
-    _subtopicos = (coll.data()!.subtopicos)
+    _subtopicos = (coll.data()?.subtopicos)
   })
 
   const response: TopicObject[] = await generateTopicObject(page, _subtopicos)
