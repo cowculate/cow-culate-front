@@ -20,9 +20,9 @@ const pages = ['inercia',
                 'bubblesort']
 
 const generateContentObject = async (page: string, topic: string, subject: string) => {
-  let problemTitle: string = ''
-  let videoURL:string = ''
-  let textURL:string = ''
+  let problemTitle = ""
+  let videoURL = ""
+  let textURL = ""
 
   await db.collection('videos').doc(subject).collection(topic).doc(page).get()
   .then((document) => {
