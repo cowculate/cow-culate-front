@@ -15,7 +15,7 @@ const ConsumptionContent: React.FC<ConsumptionInterface> = ({
   text,
   topic,
 }) => {
-  const newText = text.split('\n').map((str, index) => <p key={index}>{str}</p>)
+  const newText = text
   const handleClick = () => {
     router.push(`/topicos/${topic}`)
   }
