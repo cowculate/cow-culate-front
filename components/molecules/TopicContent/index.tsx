@@ -5,6 +5,7 @@ import { ButtonsWrapper, Title, Wrapper } from './stylle'
 interface ContentObject {
   title: string
   image: string
+  page: string
 }
 interface TopicContentInterface {
   topics: TopicObject[]
@@ -16,8 +17,10 @@ interface TopicObject {
 }
 
 const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
-  const handleClick = (content: string) => {
-    router.push(`/conteudo/${content}`)
+  const handleClick = (materia:string ,topic: string, content: string) => {
+    topic = topic.toLowerCase()
+    const path = materia +'$' + topic + '$' + content
+    router.push(`/conteudo/${path}`)
   }
   return (
     <Wrapper>
@@ -30,7 +33,7 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
               <ImageButton
                 key={content.title}
                 image={{ title: content.title, url: content.image }}
-                onClick={() => handleClick(content.title)}
+                onClick={() => handleClick( content.page, topic.title, content.title)}
               />
             ))}
           </ButtonsWrapper>
