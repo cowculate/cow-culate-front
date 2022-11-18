@@ -28,7 +28,11 @@ const generateContentObject = async (page: string, topic: string, subject: strin
   .then((document) => {
     problemTitle = document.data()?.nome
     videoURL = document.data()?.url
-    textURL = ''
+  })
+
+  await db.collection('textos').doc(subject).collection(topic).doc(page).get()
+  .then((document) => {
+    textURL = document.data()?.url
   })
 
   return {title: problemTitle, video: videoURL, text: textURL}
