@@ -4,6 +4,7 @@ import ImageButton from '../../atoms/ImageButton'
 import { ButtonsWrapper, Title, Wrapper } from './stylle'
 interface ContentObject {
   title: string
+  titleURL : string
   image: string
   page: string
 }
@@ -33,7 +34,7 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
               <ImageButton
                 key={content.title}
                 image={{ title: content.title, url: content.image }}
-                onClick={() => handleClick( content.page, topic.title, content.title)}
+                onClick={() => handleClick(content.page, content.titleURL, content.title)}
               />
             ))}
           </ButtonsWrapper>

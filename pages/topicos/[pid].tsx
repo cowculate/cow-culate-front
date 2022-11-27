@@ -7,6 +7,7 @@ import { db } from '../../firebase'
 
 interface ContentObject {
   title: string
+  titleURL: string
   image: string
   page: string
 }
@@ -28,19 +29,19 @@ const getThumbnailImages = async (page: string, subtopico: string) => {
   await db.collection('thumbnail_images').doc(page).collection(subtopico).get()
   .then((snapshot) => {
     snapshot.docs.forEach((document) => {
-      thumbsImages.push({title: document.id, image: document.data().url, page})
+      thumbsImages.push({title: document.id, titleURL: subtopico, image: document.data().url, page})
     })
   })
 
   return thumbsImages
 }
 
-const generateTopicObject = async (page: string, subtopicos: string[]) => {
+const generateTopicObject = async (page: string, subtopicos: Map<string, string>) => {
   const resp: TopicObject[] = []
 
-  for(const subtopico of subtopicos) {
-    const imageList: ContentObject[] = await getThumbnailImages(page, subtopico)
-    const title: string = subtopico.charAt(0).toUpperCase() + subtopico.slice(1);
+  for (const [key, value] of Object.entries(subtopicos)){
+    const imageList: ContentObject[] = await getThumbnailImages(page, key)
+    const title: string = value
     resp.push({title: title, content: imageList})
   }
 
@@ -48,7 +49,7 @@ const generateTopicObject = async (page: string, subtopicos: string[]) => {
 }
 
 const getFirebaseProps = async (page: string) => {
-  let _subtopicos: string[] = []
+  let _subtopicos : Map<string, string> = new Map()
 
   await db.collection('thumbnail_images').doc(page).get()
   .then((coll) => {
