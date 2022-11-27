@@ -5,8 +5,6 @@ import Header from '../../components/molecules/Header'
 import TopicContent from '../../components/molecules/TopicContent'
 import { db } from '../../firebase'
 
-import { db } from '../../public/firebase'
-
 interface ContentObject {
   title: string
   titleURL: string
