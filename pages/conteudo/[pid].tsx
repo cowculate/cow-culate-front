@@ -3,7 +3,7 @@ import PageContainer from '../../components/atoms/PageContainer'
 import ConsumptionContent from '../../components/molecules/ConsumptionContent'
 import Header from '../../components/molecules/Header'
 
-import { db } from '../../public/firebase'
+import { db } from '../../firebase'
 
 interface ContentObject {
   title: string
