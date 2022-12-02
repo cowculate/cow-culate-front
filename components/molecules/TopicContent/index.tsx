@@ -38,6 +38,7 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
               />
             ))}
           </ButtonsWrapper>
+          <br/><br/>
         </>
       ))}
     </Wrapper>
