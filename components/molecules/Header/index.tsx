@@ -51,7 +51,7 @@ const Header = () => {
                 { windowWidth > 730 ?
                     <ProfileDescription>
                         <span>Nos Contate!</span>
-                        <span>cowculate@gmail.com</span>
+                        <span>cowculate.contato@gmail.com</span>
                     </ProfileDescription>
                     : null
                 }
