@@ -4,7 +4,12 @@ import { Wrapper } from "./stylle";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-function PDFViewer(url) {
+interface PDFViewerInterface {
+    url: string
+}
+  
+
+const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
 
     const [numPages, setNumPages] = useState(0);
   
