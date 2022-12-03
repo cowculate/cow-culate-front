@@ -19,7 +19,9 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
   
     return (
           <Wrapper>
-            <Document file= {url}
+            <Document 
+            file= {url}
+            renderMode= {"canvas"}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={console.error} 
             >
@@ -27,6 +29,7 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
                 new Array(numPages),
                 (el,index) => (
                   <Page 
+                    //@ts-ignore
                     canvasBackground={"transparent"}
                     scale={1.75}
                     key={`page_${index+1}`}
