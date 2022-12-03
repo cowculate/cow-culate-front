@@ -1,7 +1,7 @@
 import router from 'next/router'
 import VideoContainer from '../../atoms/VideoContainer'
 import PDFViewer from '../PDFViewer'
-import { Title, Text, Wrapper, ReturnButton } from './stylle'
+import { Title, Wrapper, ReturnButton } from './stylle'
 
 interface ConsumptionInterface {
   title: string

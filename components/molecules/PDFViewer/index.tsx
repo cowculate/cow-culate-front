@@ -7,11 +7,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 function PDFViewer(url) {
 
     const [numPages, setNumPages] = useState(0);
-    const [pageNumber, setPageNumber] = useState(1);
   
     function onDocumentLoadSuccess({numPages}:{numPages: number}){
       setNumPages(numPages);
-      setPageNumber(1);
     }
   
     return (
