@@ -18,7 +18,7 @@ export const Wrapper = styled('div')({
 })
 
 export const Title = styled('div')({
-  //fontFamily: 'IBM Plex Mono',
+  fontFamily: 'IBM Plex Mono',
 
   fontSize: '5rem',
   fontWeight: 700,
