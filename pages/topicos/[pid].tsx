@@ -80,6 +80,7 @@ const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
       <Header />
       <TopicPanel title={title} image={''} />
       <TopicContent topics={content} />
+      <br></br>
     </PageContainer>
   )
 }
