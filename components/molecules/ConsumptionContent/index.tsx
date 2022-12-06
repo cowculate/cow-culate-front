@@ -1,6 +1,7 @@
 import router from 'next/router'
 import VideoContainer from '../../atoms/VideoContainer'
-import { Title, Text, Wrapper, ReturnButton } from './stylle'
+import PDFViewer from '../PDFViewer'
+import { Title, Wrapper, ReturnButton } from './stylle'
 
 interface ConsumptionInterface {
   title: string
@@ -15,7 +16,7 @@ const ConsumptionContent: React.FC<ConsumptionInterface> = ({
   text,
   topic,
 }) => {
-  const newText = text
+  const url = text
   const handleClick = () => {
     router.push(`/topicos/${topic}`)
   }
@@ -26,7 +27,7 @@ const ConsumptionContent: React.FC<ConsumptionInterface> = ({
         {title}
       </Title>
       <VideoContainer video={video} />
-      <Text>{newText}</Text>
+      <PDFViewer url={url} />
     </Wrapper>
   )
 }
