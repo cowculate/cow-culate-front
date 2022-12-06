@@ -10,8 +10,9 @@ export const Wrapper = styled('div')({
 })
 
 export const Title = styled('div')({
-  fontSize: '1.05rem',
-  fontWeight: '550',
+  fontSize: '1.15rem',
+  // fontFamily: 'Quicksand',
+  fontWeight: 'bold',
   letterSpacing: '0em',
   color: '#FFFFFF',
   textAlign: 'left',
