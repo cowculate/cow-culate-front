@@ -8,6 +8,7 @@ export const ImageButton = styled(ButtonBase)({
   margin: 10,
   backgroundSize: 'cover',
   backgroundPosition: 'center 40%',
+  border: '#666666 1px solid',
 })
 
 export const ImageOverlay = styled('div')({
