@@ -9,10 +9,10 @@ import FacebookIcon from '../../../public/images/facebook.png'
 
 const SharePage = () => {
 
-    const handleTwitter = () => {};
-    const handleInstagram = () => {};
-    const handleWhatsapp = () => {};
-    const handleFacebook = () => {};
+    const handleTwitter = () => {return};
+    const handleInstagram = () => {return};
+    const handleWhatsapp = () => {return};
+    const handleFacebook = () => {return};
 
     return (
         <Wrapper>
