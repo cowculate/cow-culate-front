@@ -33,20 +33,20 @@ export const Text = styled('text')({
 })
 
 export const ReturnButton = styled('button')({
-  position: 'absolute',
-  margin: '1.5rem 0',
+  position: 'relative',
+  margin: '0.25rem 1.25rem 0.25rem 0.25rem',
 
   left: '5px',
-  width: 0,
-  height: 0,
-  borderTop: '10px solid transparent',
-  borderBottom: '10px solid transparent',
-  borderRight: '20px solid #D9D9D9',
-  borderLeft: '20px solid transparent',
+  border: 'transparent',
   background: 'transparent',
   cursor: 'pointer',
   '@media (max-width: 700px)': {
     position: 'relative',
-    left: '-25px',
+    left: '-5px',
   },
+})
+
+export const SharePageWrapper = styled('div')({	
+  marginLeft: 'auto',
+  paddingLeft: '10px',
 })
