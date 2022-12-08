@@ -8,6 +8,7 @@ import { db } from '../../firebase'
 interface ContentObject {
   title: string
   titleURL: string
+  formatTitle: string
   image: string
   page: string
 }
@@ -29,7 +30,7 @@ const getThumbnailImages = async (page: string, subtopico: string) => {
   await db.collection('thumbnail_images').doc(page).collection(subtopico).get()
   .then((snapshot) => {
     snapshot.docs.forEach((document) => {
-      thumbsImages.push({title: document.id, titleURL: subtopico, image: document.data().url, page})
+      thumbsImages.push({title: document.id, formatTitle: document.data().nome, titleURL: subtopico, image: document.data().url, page})
     })
   })
 
