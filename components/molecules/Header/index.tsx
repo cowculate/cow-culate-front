@@ -38,17 +38,17 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            { windowWidth <= 730 ? 
+            { windowWidth <= 800 ? 
                 <HamburgerMenu active={collapsed} onClick={() => setCollapsed(!collapsed)}/>
                 : null
             }
-            <HeaderNavBar collapsed={collapsed} links={links} mobile={windowWidth <= 730} />
+            <HeaderNavBar collapsed={collapsed} links={links} mobile={windowWidth <= 800} />
             { windowWidth > 1000 ?
                 <Image src={TituloHeader} alt="Logotipo CowCulate" />
                 : null
             }
             <ProfileContainer>
-                { windowWidth > 730 ?
+                { windowWidth > 800 ?
                     <ProfileDescription>
                         <span>Nos Contate!</span>
                         <span>cowculate.contato@gmail.com</span>
