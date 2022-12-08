@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { inflateRaw } from "zlib";
 import { Wrapper } from "./stylle";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
