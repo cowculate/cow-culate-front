@@ -42,13 +42,10 @@ const ImageButtonComponent: React.FC<ImageButtonInterface> = ({
       onMouseOut={onMouseOut}
     >
       <Fade in = {showTitle}  timeout = {300}>
-
       <ImageOverlay>
         <Title>{formatTitle}</Title>
       </ImageOverlay>
-        
       </Fade>
-
     </ImageButton>
     </>
   )
