@@ -2,6 +2,8 @@ import type { GetServerSideProps, NextPage } from 'next'
 import PageContainer from '../../components/atoms/PageContainer'
 import ConsumptionContent from '../../components/molecules/ConsumptionContent'
 import Header from '../../components/molecules/Header'
+import Footer from '../../components/molecules/Footer'
+
 
 import { db } from '../../firebase'
 
@@ -52,6 +54,7 @@ const Contents: NextPage<ContentsInterface> = ({ content, subject }) => {
         text={content.text}
         topic={subject}
       />
+      <Footer />
     </PageContainer>
   )
 }

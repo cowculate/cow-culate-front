@@ -3,6 +3,7 @@ import PageContainer from '../../components/atoms/PageContainer'
 import TopicPanel from '../../components/atoms/TopicPanel/'
 import Header from '../../components/molecules/Header'
 import TopicContent from '../../components/molecules/TopicContent'
+import Footer from '../../components/molecules/Footer'
 import { db } from '../../firebase'
 
 interface ContentObject {
@@ -77,12 +78,15 @@ const getFirebaseProps = async (page: string) => {
 
 const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
   return (
+   <>
     <PageContainer>
       <Header />
       <TopicPanel title={title} image={''} />
       <TopicContent topics={content} />
-      <br></br>
     </PageContainer>
+    <Footer />
+  
+   </>
   )
 }
 

@@ -1,7 +1,10 @@
 import router from 'next/router'
 import VideoContainer from '../../atoms/VideoContainer'
 import PDFViewer from '../PDFViewer'
-import { Title, Wrapper, ReturnButton } from './stylle'
+import SharePage from '../../atoms/SharePage/'
+import { Title, Wrapper, ReturnButton, SharePageWrapper } from './stylle'
+import Image from 'next/image'
+import BackButton from '../../../public/images/backbutton.png'
 
 interface ConsumptionInterface {
   title: string
@@ -23,8 +26,13 @@ const ConsumptionContent: React.FC<ConsumptionInterface> = ({
   return (
     <Wrapper>
       <Title>
-        <ReturnButton onClick={handleClick} />
+        <ReturnButton onClick={handleClick}>
+        <Image src={BackButton} alt="return" width="48" height="48" />
+        </ReturnButton>
         {title}
+        <SharePageWrapper>
+          <SharePage/>
+        </SharePageWrapper>
       </Title>
       <VideoContainer video={video} />
       <PDFViewer url={url} />

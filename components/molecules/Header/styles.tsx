@@ -8,6 +8,7 @@ export const StyledHeader = styled("header")({
     gridTemplateColumns: "1fr 161px 1.2fr",
     alignItems: "center",
     justifyContent: "space-between",
+    borderBottom: "1px solid white",
     "@media(max-width: 730px)": {
         gridTemplateColumns: "1fr 1fr",
         alignItems: "center",
