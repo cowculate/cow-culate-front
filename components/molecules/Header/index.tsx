@@ -7,17 +7,22 @@ import HamburgerMenu from "../../atoms/HamburgerMenu"
 import { StyledHeader, ProfileContainer, ProfileDescription, ProfilePictureContainer } from "./styles"
 import TituloHeader from "../../../public/images/titulo-navbar-cow-culate.png"
 import Logo from "../../../public/images/new_user_pic.png"
+import Link from "next/link"
 
 
 const Header = () => {
     const links: Array<HeaderNavLink> = [
+        {
+            href: "/",
+            value: "home"
+        },
         {
             href: "/topicos/fisica",
             value: "física"
         },
         {
             href: "/topicos/matematica",
-            value: "matematica"
+            value: "matemática"
         },
         {
             href: "/topicos/computacao",
@@ -44,7 +49,7 @@ const Header = () => {
             }
             <HeaderNavBar collapsed={collapsed} links={links} mobile={windowWidth <= 800} />
             { windowWidth > 1000 ?
-                <Image src={TituloHeader} alt="Logotipo CowCulate" />
+                <Link href="/"><Image src={TituloHeader} alt="Logotipo CowCulate" /></Link>
                 : null
             }
             <ProfileContainer>
