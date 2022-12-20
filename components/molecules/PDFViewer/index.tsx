@@ -15,7 +15,6 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
-
       function handleResize(){
         if(window.innerWidth < 800) setWidth(window.innerWidth/1.2)
         if(window.innerWidth < 700) setWidth(window.innerWidth/1.1)
@@ -24,14 +23,14 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
         console.log(window.innerWidth)
       }
 
+      window.addEventListener("pageshow", handleResize)
       window.addEventListener("resize", handleResize)
-
+      
       handleResize();
 
       return () => window.removeEventListener("resize", handleResize);
     }, [])
 
-  
     function onDocumentLoadSuccess({numPages}:{numPages: number}){
       setNumPages(numPages);
     }
