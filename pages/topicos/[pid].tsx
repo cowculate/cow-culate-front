@@ -79,14 +79,12 @@ const getFirebaseProps = async (page: string) => {
 
 const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
   return (
-   <>
     <PageContainer>
       <Header />
       <TopicPanel title={title} image={''} />
       <TopicContent topics={content} />
       <Footer />
     </PageContainer>
-   </>
   )
 }
 
