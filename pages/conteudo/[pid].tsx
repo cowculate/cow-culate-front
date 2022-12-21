@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import PageContainer from '../../components/atoms/PageContainer'
 import ConsumptionContent from '../../components/molecules/ConsumptionContent'
 import Header from '../../components/molecules/Header'
-import Footer from '../../components/molecules/Footer'
+import Footer from '../../components/atoms/Footer'
 
 
 import { db } from '../../firebase'
