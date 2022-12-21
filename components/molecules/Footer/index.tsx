@@ -3,14 +3,14 @@ import { Wrapper, ProductName } from  './style'
 
 const Footer = () => {
 
-    return(
-        <Wrapper>
-            <ProductName>
-                <div style={{color: 'gray'}}>{"@2022"}</div>
-                <div style={{color: 'white'}}>{"CowCulate"}</div>
-            </ProductName>
-        </Wrapper>
-    )
+  return(
+    <Wrapper>
+      <ProductName>
+        {"CowCulate"}
+        <span style={{color: "#555"}}>{"@2022"}</span>
+      </ProductName>
+    </Wrapper>
+  )
 } 
 
 export default Footer
