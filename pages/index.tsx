@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import HomeContent from '../components/atoms/HomeContent'
 import CowCulateIcon from '../components/atoms/Icons/CowCulateIcon'
-import PageContainer from '../components/atoms/PageContainer'
 import Header from '../components/molecules/Header/index'
 
 const Home: NextPage = () => {
@@ -20,9 +19,13 @@ const Home: NextPage = () => {
   }, [])
 
   return (
-    <PageContainer>
+    <div style={{
+       display: 'flex',
+       flexDirection: 'column',
+       height: '100vh',
+       backgroundColor: '#404040'
+    }}>
       <Header />
-
       <div
         style={{
           display: 'flex',
@@ -34,7 +37,7 @@ const Home: NextPage = () => {
         <HomeContent />
         {placeCow && <CowCulateIcon height={windowHeight * 0.8} />}
       </div>
-    </PageContainer>
+    </div>
   )
 }
 
