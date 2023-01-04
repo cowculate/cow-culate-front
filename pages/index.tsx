@@ -23,7 +23,7 @@ const Home: NextPage = () => {
        display: 'flex',
        flexDirection: 'column',
        height: '100vh',
-       backgroundColor: '#404040'
+       backgroundColor: '#202020'
     }}>
       <Header />
       <div

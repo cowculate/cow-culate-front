@@ -7,7 +7,6 @@ export const Wrapper = styled('div')({
   justifyContent: 'space-between',
   backgroundImage: 'url(/images/gradient.png)',
   backgroundSize: 'cover',
-  backgroundColor: '#404040',
   width: '50%',
   minWidth: '632px',
   padding: '3em 1em 2em 3em',
