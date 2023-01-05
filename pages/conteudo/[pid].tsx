@@ -19,7 +19,7 @@ interface ContentsInterface {
 
 const pages = ['inercia',
                'integral_de_riemann', 'metodo_de_newton', 'metodo_da_bisseccao', 'arvore_de_pitagoras',
-                'bubblesort', 'insertionsort']
+                'bubblesort', 'insertionsort', 'fail']
 
 const generateContentObject = async (page: string, topic: string, subject: string) => {
   let problemTitle = ""

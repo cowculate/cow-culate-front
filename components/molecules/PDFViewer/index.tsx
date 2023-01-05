@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Wrapper } from "./stylle";
+import LoadFail from "../../atoms/LoadFail"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
@@ -34,6 +35,10 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
     function onDocumentLoadSuccess({numPages}:{numPages: number}){
       setNumPages(numPages);
     }
+
+    function onError(){
+      return <LoadFail/>
+    }
   
     return (
           <Wrapper>
@@ -41,7 +46,8 @@ const PDFViewer: React.FC<PDFViewerInterface> = ({ url }) => {
             file= {url}
             renderMode= {"canvas"}
             onLoadSuccess={onDocumentLoadSuccess}
-            onLoadError={console.error} 
+            onLoadError={onError} 
+            noData={<LoadFail/>}
             >
               {Array.from(
                 new Array(numPages),
