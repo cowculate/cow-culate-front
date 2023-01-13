@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import HeaderNavBar, { HeaderNavLink } from "../../atoms/HeaderNavBar"
 import HamburgerMenu from "../../atoms/HamburgerMenu"
+import LoginBox from "../../atoms/LoginBox"
 
 import { StyledHeader, ProfileContainer, ProfileDescription, ProfilePictureContainer } from "./styles"
 import TituloHeader from "../../../public/images/titulo-navbar-cow-culate.png"
@@ -61,10 +62,7 @@ const Header = () => {
                     : null
                 }
                 <ProfilePictureContainer>
-                    <Image
-                        src={Logo}
-                        alt="Imagem perfil padrao"
-                    />
+                    <LoginBox />
                 </ProfilePictureContainer>
             </ProfileContainer>
         </StyledHeader>
