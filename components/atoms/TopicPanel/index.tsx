@@ -6,9 +6,11 @@ interface TopicPanelInterface {
 }
 
 const TopicPanel: React.FC<TopicPanelInterface> = ({ title, image }) => {
-  console.log(image)
   return (
-    <Wrapper>
+    <Wrapper
+      data-testid="Panel"
+      style={{ backgroundImage: `url(/images/${image}.png)` }}
+    >
       <Title>tópicos em</Title>
       <TitleHighlight>{title}</TitleHighlight>
     </Wrapper>

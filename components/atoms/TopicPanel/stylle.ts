@@ -8,6 +8,10 @@ export const Wrapper = styled('div')({
   width: '100%',
   height: '55vh',
   padding: '3rem',
+  overflow: 'hidden',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
 })
 
 export const Title = styled('div')({
@@ -17,6 +21,8 @@ export const Title = styled('div')({
   letterSpacing: '0em',
   color: '#FFFFFF',
   textAlign: 'left',
+  zIndex: 2,
+
   '@media (max-width: 1400px)': {
     fontSize: '4rem',
   },
@@ -34,4 +40,19 @@ export const Title = styled('div')({
 export const TitleHighlight = styled(Title)({
   letterSpacing: '0.7em',
   textTransform: 'uppercase',
+  zIndex: 2,
+})
+
+export const BackgroundDiv = styled('div')({
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  zIndex: 0,
+})
+
+export const BackgroundImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'contain',
+  zIndex: 0,
 })

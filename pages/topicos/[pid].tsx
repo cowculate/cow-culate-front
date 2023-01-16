@@ -20,68 +20,87 @@ interface TopicObject {
 }
 interface TopicsInterface {
   title: string
+  image: string
   content: TopicObject[]
 }
 
 const pages = ['fisica', 'matematica', 'computacao']
 
 const getThumbnailImages = async (page: string, subtopico: string) => {
-
   const thumbsImages: ContentObject[] = []
 
-  await db.collection('thumbnail_images').doc(page).collection(subtopico).get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((document) => {
-      thumbsImages.push({title: document.id, formatTitle: document.data().nome, titleURL: subtopico, image: document.data().url, page})
+  await db
+    .collection('thumbnail_images')
+    .doc(page)
+    .collection(subtopico)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((document) => {
+        thumbsImages.push({
+          title: document.id,
+          formatTitle: document.data().nome,
+          titleURL: subtopico,
+          image: document.data().url,
+          page,
+        })
+      })
     })
-  })
 
   return thumbsImages
 }
 
-const generateTopicObject = async (page: string, subtopicos: Map<string, string>) => {
+const generateTopicObject = async (
+  page: string,
+  subtopicos: Map<string, string>
+) => {
   const resp: TopicObject[] = []
 
-  for (const [key, value] of Object.entries(subtopicos)){
+  for (const [key, value] of Object.entries(subtopicos)) {
     const imageList: ContentObject[] = await getThumbnailImages(page, key)
     const title: string = value
-    resp.push({title: title, content: imageList})
+    resp.push({ title: title, content: imageList })
   }
 
   return resp
 }
 
 const getFirebaseProps = async (page: string) => {
-  let _subtopicos : Map<string, string> = new Map()
+  let _subtopicos: Map<string, string> = new Map()
 
-  await db.collection('thumbnail_images').doc(page).get()
-  .then((coll) => {
-    _subtopicos = (coll.data()?.subtopicos)
-  })
+  await db
+    .collection('thumbnail_images')
+    .doc(page)
+    .get()
+    .then((coll) => {
+      _subtopicos = coll.data()?.subtopicos
+    })
 
   const response: TopicObject[] = await generateTopicObject(page, _subtopicos)
-  let pageTitle = ""
-  switch (page){
+  let pageTitle = ''
+  let pageImage = ''
+  switch (page) {
     case 'fisica':
       pageTitle = 'Física'
+      pageImage = 'fisic'
       break
     case 'matematica':
       pageTitle = 'Matemática'
+      pageImage = 'math'
       break
     case 'computacao':
       pageTitle = 'Computação'
+      pageImage = 'comp'
       break
   }
 
-  return { title: pageTitle, content: response }
+  return { title: pageTitle, image: pageImage, content: response }
 }
 
-
-const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
+const Topics: NextPage<TopicsInterface> = ({ title, image, content }) => {
   return (
     <PageContainer>
       <Header />
-      <TopicPanel title={title} image={''} />
+      <TopicPanel title={title} image={image} />
       <TopicContent topics={content} />
       <Footer />
     </PageContainer>
@@ -91,11 +110,12 @@ const Topics: NextPage<TopicsInterface> = ({ title, content }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const page = (params?.pid as string) || ''
   if (!pages.includes(page)) return { notFound: true }
-  const { title, content } = await getFirebaseProps(page)
+  const { title, image, content } = await getFirebaseProps(page)
 
   return {
     props: {
       title,
+      image,
       content,
     },
   }
