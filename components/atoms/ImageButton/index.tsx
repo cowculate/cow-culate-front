@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ImageButton, ImageOverlay, Title } from './stylle'
-import Fade from '@mui/material/Fade';
+import Fade from '@mui/material/Fade'
 interface ImageButtonInterface {
   image: image
   formatTitle: string
@@ -17,7 +17,6 @@ const ImageButtonComponent: React.FC<ImageButtonInterface> = ({
   formatTitle,
   onClick,
 }) => {
-
   const [showTitle, setShowTitle] = useState(false)
 
   const onMouseOver = () => {
@@ -28,12 +27,12 @@ const ImageButtonComponent: React.FC<ImageButtonInterface> = ({
     setShowTitle(false)
   }
 
-
   return (
-    <>
-    <ImageButton sx = {{
-      boxShadow: "rgba(255, 255, 255, 0.4) -5px 5px, rgba(255, 255, 255, 0.3) -10px 10px, rgba(255, 255, 255, 0.2) -15px 15px, rgba(255, 255, 255, 0.1) -20px 20px, rgba(255, 255, 255, 0.05) -25px 25px;"
-    }}
+    <ImageButton
+      sx={{
+        boxShadow:
+          'rgba(255, 255, 255, 0.4) -5px 5px, rgba(255, 255, 255, 0.3) -10px 10px, rgba(255, 255, 255, 0.2) -15px 15px, rgba(255, 255, 255, 0.1) -20px 20px, rgba(255, 255, 255, 0.05) -25px 25px;',
+      }}
       focusRipple
       key={image.title}
       style={{ backgroundImage: `url(${image.url})` }}
@@ -41,13 +40,12 @@ const ImageButtonComponent: React.FC<ImageButtonInterface> = ({
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
     >
-      <Fade in = {showTitle}  timeout = {300}>
-      <ImageOverlay>
-        <Title>{formatTitle}</Title>
-      </ImageOverlay>
+      <Fade in={showTitle} timeout={300}>
+        <ImageOverlay>
+          <Title>{formatTitle}</Title>
+        </ImageOverlay>
       </Fade>
     </ImageButton>
-    </>
   )
 }
 

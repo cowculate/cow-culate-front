@@ -4,7 +4,6 @@ import PDFViewer from '../PDFViewer'
 import SharePage from '../../atoms/SharePage/'
 import { Title, Wrapper, ReturnButton, SharePageWrapper } from './stylle'
 import Image from 'next/image'
-import BackButton from '../../../public/images/backbutton.png'
 
 interface ConsumptionInterface {
   title: string
@@ -27,11 +26,16 @@ const ConsumptionContent: React.FC<ConsumptionInterface> = ({
     <Wrapper>
       <Title>
         <ReturnButton onClick={handleClick}>
-        <Image src={BackButton} alt="return" width="48" height="48" />
+          <Image
+            src={'/images/backbutton.png'}
+            alt="return"
+            width="48"
+            height="48"
+          />
         </ReturnButton>
         {title}
         <SharePageWrapper>
-          <SharePage/>
+          <SharePage />
         </SharePageWrapper>
       </Title>
       <VideoContainer video={video} />

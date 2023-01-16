@@ -19,11 +19,12 @@ interface TopicObject {
 }
 
 const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
-  const handleClick = (materia:string ,topic: string, content: string) => {
+  const handleClick = (materia: string, topic: string, content: string) => {
     topic = topic.toLowerCase()
-    const path = materia +'$' + topic + '$' + content
+    const path = materia + '$' + topic + '$' + content
     router.push(`/conteudo/${path}`)
   }
+  console.log(topics)
   return (
     <Wrapper>
       {topics.map((topic) => (
@@ -36,7 +37,9 @@ const TopicContent: React.FC<TopicContentInterface> = ({ topics }) => {
                 key={content.title}
                 image={{ title: content.title, url: content.image }}
                 formatTitle={content.formatTitle}
-                onClick={() => handleClick(content.page, content.titleURL, content.title)}
+                onClick={() =>
+                  handleClick(content.page, content.titleURL, content.title)
+                }
               />
             ))}
           </ButtonsWrapper>
